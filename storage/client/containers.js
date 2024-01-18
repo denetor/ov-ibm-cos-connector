@@ -27,9 +27,6 @@ exports.getContainers = function(callback) {
         if (err) {
             callback(err);
         } else {
-            console.log('****************************************');
-            console.log(data);
-            console.log('****************************************');
             data = _.map(data.Contents, function(d) {
                 var index = d.Key.indexOf('___');
                 if (index > 0) {
@@ -42,10 +39,6 @@ exports.getContainers = function(callback) {
             });
             data = _.filter(data, function(d) { return d; });
             data = _.uniq(data, function(d) { return d.Key; });
-            console.log('****************************************');
-            console.log(data);
-            console.log('****************************************');
-
             var containers = _.map(data, function(container) {
                 return new (storage.Container)(self, container);
             });
